@@ -1,23 +1,23 @@
 import java.util.Objects;
 
 public class Task {
-protected String name;
-protected String description;
-protected int id;
-protected Status status;
+    protected String name;
+    protected String description;
+    protected int id;
+    protected Status status;
 
-    public Task(String description) {
+    public Task(String name, String description) {
         this.description = description;
-        setName("задача");
+        this.name = name;
         this.id = getId();
         this.status = Status.NEW;
     }
 
-    public Task(String description, int id) {
+    public Task(String name, String description, int id, Status status) {
+        this.name = name;
         this.description = description;
         this.id = id;
-        setName("задача");
-        this.status = Status.NEW;
+        this.status = status;
     }
 
     public String getName() {
