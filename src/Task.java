@@ -9,7 +9,6 @@ public class Task {
     public Task(String name, String description) {
         this.description = description;
         this.name = name;
-        this.id = getId();
         this.status = Status.NEW;
     }
 

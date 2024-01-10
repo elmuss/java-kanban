@@ -1,15 +1,3 @@
 
-
-java:S1319"bThe type of "tasks" should be an interface such as "Map" rather than the implementation "HashMap".(ô—³8ñµ·ÌÎ1
-„
-java:S1319"bThe type of "epics" should be an interface such as "Map" rather than the implementation "HashMap".(«”›Öúÿÿÿÿ8ñµ·ÌÎ1
-‡
-java:S1319	"eThe type of "subtasks" should be an interface such as "Map" rather than the implementation "HashMap".(Œ”Ó¶üÿÿÿÿ8ñµ·ÌÎ1
-n
-java:S1104"QMake tasks a static final constant or non-public and provide accessors if needed.(ô—³8ñµ·ÌÎ1
-s
-java:S1104"QMake epics a static final constant or non-public and provide accessors if needed.(«”›Öúÿÿÿÿ8ñµ·ÌÎ1
-v
-java:S1104	"TMake subtasks a static final constant or non-public and provide accessors if needed.(Œ”Ó¶üÿÿÿÿ8ñµ·ÌÎ1
 7
-java:S1220""Move this file to a named package.8ñµ·ÌÎ1
+java:S1220""Move this file to a named package.8Öúß¥Ï1
