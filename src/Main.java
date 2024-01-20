@@ -2,7 +2,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        TaskManager taskManager = new TaskManager();
+        TaskManager taskManager = new InMemoryTaskManager();
         taskManager.addTask(new Task("задача 1", "описание задачи 1")); //1
         taskManager.addTask(new Task("задача 2", "описание задачи 2")); //2
         taskManager.addEpic(new Epic("эпик 1", "описание эпика 1")); //3
@@ -25,6 +25,12 @@ public class Main {
         System.out.println("список задач: " + taskManager.getListTask());
         System.out.println("список эпиков: " + taskManager.getListEpic());
         System.out.println("список подзадач: " + taskManager.getListSubtask());
+        taskManager.getCertainTask(1);
+        taskManager.getCertainSubtask(4);
+        taskManager.getCertainTask(2);
+        taskManager.getCertainSubtask(4);
+        System.out.println("история: " + taskManager.getHistory());
+
 
     }
 }
