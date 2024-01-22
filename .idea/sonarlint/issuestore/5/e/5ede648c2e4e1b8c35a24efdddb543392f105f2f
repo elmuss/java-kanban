@@ -1,31 +1,29 @@
 
 l
-java:S1192
-"ODefine a constant instead of duplicating this literal "Ğ·Ğ°Ğ´Ğ°Ñ‡Ğ° 1" 5 times.(‘¸´¿8èéßºÒ1
+java:S1192"ODefine a constant instead of duplicating this literal "Ğ·Ğ°Ğ´Ğ°Ñ‡Ğ° 1" 5 times.(‘¸´¿8èéßºÒ1
 {
-java:S1192"^Define a constant instead of duplicating this literal "Ğ¾Ğ¿Ğ¸ÑĞ°Ğ½Ğ¸Ğµ ÑĞ¿Ğ¸ĞºĞ° 1" 5 times.(¾¿ßÀ8èéßºÒ1
+java:S1192"^Define a constant instead of duplicating this literal "Ğ¾Ğ¿Ğ¸ÑĞ°Ğ½Ğ¸Ğµ ÑĞ¿Ğ¸ĞºĞ° 1" 5 times.(¾¿ßÀ8èéßºÒ1
 }
-java:S1192
-"`Define a constant instead of duplicating this literal "Ğ¾Ğ¿Ğ¸ÑĞ°Ğ½Ğ¸Ğµ Ğ·Ğ°Ğ´Ğ°Ñ‡Ğ¸ 1" 4 times.(‘¸´¿8èéßºÒ1
+java:S1192"`Define a constant instead of duplicating this literal "Ğ¾Ğ¿Ğ¸ÑĞ°Ğ½Ğ¸Ğµ Ğ·Ğ°Ğ´Ğ°Ñ‡Ğ¸ 1" 4 times.(‘¸´¿8èéßºÒ1
 h
-java:S1192"KDefine a constant instead of duplicating this literal "ÑĞ¿Ğ¸Ğº 1" 5 times.(¾¿ßÀ8èéßºÒ1
+java:S1192"KDefine a constant instead of duplicating this literal "ÑĞ¿Ğ¸Ğº 1" 5 times.(¾¿ßÀ8èéßºÒ1
 7
 java:S1220""Move this file to a named package.8èéßºÒ1
 Z
-java:S1854"=Remove this useless assignment to local variable "listEpics".(¶„Ø‘8ˆêßºÒ1
+java:S1854$"=Remove this useless assignment to local variable "listEpics".(¶„Ø‘8ˆêßºÒ1
 K
-java:S1481".Remove this unused "listEpics" local variable.(¶„Ø‘8ˆêßºÒ1
+java:S1481$".Remove this unused "listEpics" local variable.(¶„Ø‘8ˆêßºÒ1
 ]
-java:S1854)"@Remove this useless assignment to local variable "listSubtasks".(Ÿ¥š²8ˆêßºÒ1
+java:S1854."@Remove this useless assignment to local variable "listSubtasks".(Ÿ¥š²8ˆêßºÒ1
 Z
-java:S1854("=Remove this useless assignment to local variable "listEpics".(¶„Ø‘8ˆêßºÒ1
+java:S1854-"=Remove this useless assignment to local variable "listEpics".(¶„Ø‘8ˆêßºÒ1
 K
-java:S1481(".Remove this unused "listEpics" local variable.(¶„Ø‘8ˆêßºÒ1
+java:S1481-".Remove this unused "listEpics" local variable.(¶„Ø‘8ˆêßºÒ1
 N
-java:S1481)"1Remove this unused "listSubtasks" local variable.(Ÿ¥š²8ˆêßºÒ1
+java:S1481."1Remove this unused "listSubtasks" local variable.(Ÿ¥š²8ˆêßºÒ1
 [
-java:S21339">Remove this object instantiation and use "Epic.class" instead.(ïÌÅò8—êßºÒ1
+java:S2133>">Remove this object instantiation and use "Epic.class" instead.(ïÌÅò8—êßºÒ1
 `
-java:S2133:">Remove this object instantiation and use "Task.class" instead.(úâ«¡ÿÿÿÿÿ8—êßºÒ1
+java:S2133?">Remove this object instantiation and use "Task.class" instead.(úâ«¡ÿÿÿÿÿ8—êßºÒ1
 H
-java:S5960"+Remove this assertion from production code.(ƒù°Ù8—êßºÒ1
+java:S5960"+Remove this assertion from production code.(ƒù°Ù8—êßºÒ1
