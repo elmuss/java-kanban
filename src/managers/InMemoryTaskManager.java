@@ -70,7 +70,8 @@ public class InMemoryTaskManager implements TaskManager {
     }
     @Override
     public void removeCertainTask(int id) {
-            tasks.remove(id);
+        tasks.remove(id);
+        historyManager.remove(id);
     }
     @Override
     public void removeCertainEpic(int id) {
@@ -82,6 +83,7 @@ public class InMemoryTaskManager implements TaskManager {
             }
             epics.remove(id);
         }
+        historyManager.remove(id);
     }
     @Override
     public void removeCertainSubtask(int id) {
@@ -91,20 +93,21 @@ public class InMemoryTaskManager implements TaskManager {
         subtaskList.remove(subtask);
         subtasks.remove(id);
         changeEpicStatus(epic);
+        historyManager.remove(id);
     }
     @Override
     public Task getCertainTask(int id) {
-        historyManager.add(tasks.get(id));
+        historyManager.linkLast(tasks.get(id));
         return tasks.get(id);
     }
     @Override
     public Epic getCertainEpic(int id) {
-        historyManager.add(epics.get(id));
+        historyManager.linkLast(epics.get(id));
         return epics.get(id);
     }
     @Override
     public Subtask getCertainSubtask(int id) {
-        historyManager.add(subtasks.get(id));
+        historyManager.linkLast(subtasks.get(id));
         return subtasks.get(id);
     }
     @Override
