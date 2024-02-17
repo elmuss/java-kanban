@@ -6,6 +6,7 @@ import tasks.Status;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class InMemoryTaskManager implements TaskManager {
     private int id = 0;
@@ -97,17 +98,17 @@ public class InMemoryTaskManager implements TaskManager {
     }
     @Override
     public Task getCertainTask(int id) {
-        historyManager.linkLast(tasks.get(id));
+        historyManager.add(tasks.get(id));
         return tasks.get(id);
     }
     @Override
     public Epic getCertainEpic(int id) {
-        historyManager.linkLast(epics.get(id));
+        historyManager.add(epics.get(id));
         return epics.get(id);
     }
     @Override
     public Subtask getCertainSubtask(int id) {
-        historyManager.linkLast(subtasks.get(id));
+        historyManager.add(subtasks.get(id));
         return subtasks.get(id);
     }
     @Override
