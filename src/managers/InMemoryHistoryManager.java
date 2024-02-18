@@ -50,21 +50,20 @@ public class InMemoryHistoryManager implements HistoryManager {
             if (nodeToRemove.getPrev() == null && nodeToRemove.getNext() != null) {
                 first = nodeToRemove.getNext();
                 nodeToRemove.getNext().setPrev(null);
-                historyHashMap.remove(nodeToRemove.data.getId());
 
             } else if (nodeToRemove.getPrev() != null && nodeToRemove.getNext() == null) {
                 last = nodeToRemove.getPrev();
                 nodeToRemove.getPrev().setNext(null);
-                historyHashMap.remove(nodeToRemove.data.getId());
 
             } else if (nodeToRemove.getPrev() == null && nodeToRemove.getNext() == null) {
-                historyHashMap.remove(nodeToRemove.data.getId());
+                first = null;
+                last = null;
 
             } else {
                 nodeToRemove.getPrev().setNext(nodeToRemove.getNext());
                 nodeToRemove.getNext().setPrev(nodeToRemove.getPrev());
-                historyHashMap.remove(nodeToRemove.data.getId());
             }
+            historyHashMap.remove(nodeToRemove.data.getId());
         }
     }
 
@@ -93,10 +92,12 @@ public class InMemoryHistoryManager implements HistoryManager {
 
     ArrayList<Task> getTasks() {
         ArrayList<Task> history = new ArrayList<>();
-        history.add(first.data);
 
-        for (int i = 0; i < historyHashMap.size() - 1; i++) {
-            history.add(historyHashMap.get(history.get(i).getId()).getNext().getData());
+        if (!historyHashMap.isEmpty()) {
+
+            for (Node element = first; history.size() < historyHashMap.size(); element = element.getNext()) {
+                history.add(element.getData());
+            }
         }
         return history;
     }
