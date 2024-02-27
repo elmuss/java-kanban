@@ -32,12 +32,14 @@ public class Main {
         System.out.println("список задач: " + taskManager.getListTask());
         System.out.println("список эпиков: " + taskManager.getListEpic());
         System.out.println("список подзадач: " + taskManager.getListSubtask());
-        taskManager.getCertainTask(1);
-        taskManager.getCertainSubtask(4);
         taskManager.getCertainTask(2);
         taskManager.getCertainSubtask(4);
+        taskManager.getCertainSubtask(5);
+        taskManager.getCertainTask(2);
+        taskManager.getCertainEpic(3);
         System.out.println("история: " + taskManager.getHistory());
-
-
+        taskManager.removeCertainTask(2);
+        taskManager.getCertainSubtask(5);
+        System.out.println("история: " + taskManager.getHistory());
     }
 }
