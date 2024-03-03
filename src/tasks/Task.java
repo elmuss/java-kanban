@@ -1,5 +1,7 @@
 package tasks;
 
+import managers.TaskType;
+
 import java.util.Objects;
 
 public class Task {
@@ -7,6 +9,7 @@ public class Task {
     protected String description;
     protected int id;
     public Status status;
+    protected TaskType type = TaskType.TASK;
 
     public Task(String name, String description) {
         this.description = description;
@@ -76,5 +79,9 @@ public class Task {
                 ", id=" + getId() +
                 ", status=" + getStatus() +
                 '}';
+    }
+
+    public TaskType getType() {
+        return type;
     }
 }

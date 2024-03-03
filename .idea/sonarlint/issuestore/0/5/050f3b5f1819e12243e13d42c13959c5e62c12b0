@@ -1,5 +1,7 @@
 
+E
+java:S2387"("type" is the name of a field in "Task".(Ù¼è¿8¥‡Ì¬à1
 H
-java:S2160"+Override the "equals" method in this class.(‡¢ÉÎ8‹¬“Ó1
+java:S2160	"+Override the "equals" method in this class.(‡¢ÉÎ8‹¬“Ó1
 v
-java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(Ù™»£ûÿÿÿÿ8‹¬“Ó1
+java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(Ù™»£ûÿÿÿÿ8¥‡Ì¬à1
