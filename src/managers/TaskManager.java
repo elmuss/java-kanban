@@ -2,28 +2,29 @@ package managers;
 
 import tasks.*;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface TaskManager {
-    void addTask(Task task);
+    void addTask(Task task) throws IOException;
 
-    void addSubtask(Subtask subtask);
+    void addSubtask(Subtask subtask) throws IOException;
 
-    void changeEpicStatus(Epic epic);
+    void changeEpicStatus(Epic epic) throws IOException;
 
-    void addEpic(Epic epic);
+    void addEpic(Epic epic) throws IOException;
 
-    void clearTasks();
+    void clearTasks() throws IOException;
 
-    void clearEpics();
+    void clearEpics() throws IOException;
 
-    void clearSubtasks();
+    void clearSubtasks() throws IOException;
 
-    void removeCertainTask(int id);
+    void removeCertainTask(int id) throws IOException;
 
-    void removeCertainEpic(int id);
+    void removeCertainEpic(int id) throws IOException;
 
-    void removeCertainSubtask(int id);
+    void removeCertainSubtask(int id) throws IOException;
 
     Task getCertainTask(int id);
 
@@ -37,10 +38,10 @@ public interface TaskManager {
 
     List<Subtask> getListSubtask();
 
-    void updateTask(Task task);
+    void updateTask(Task task) throws IOException;
 
-    void updateEpic(Epic epic);
+    void updateEpic(Epic epic) throws IOException;
 
-    void updateSubtask(Subtask subtask);
+    void updateSubtask(Subtask subtask) throws IOException;
     List<Task> getHistory();
 }

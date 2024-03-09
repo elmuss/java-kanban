@@ -1,14 +1,15 @@
 package managers;
 
 import java.io.File;
+import java.io.IOException;
 
 public class Managers {
-    InMemoryTaskManager manager;
+    static InMemoryTaskManager manager;
     FileBackedTaskManager fileBackedManager;
     static InMemoryHistoryManager historyManager;
 
-    public FileBackedTaskManager getDefault() {
-        return fileBackedManager = new FileBackedTaskManager(new File("resources", "tasks.csv"));
+    static InMemoryTaskManager getDefault() throws IOException {
+        return manager = new FileBackedTaskManager(File.createTempFile("test", "csv"));
     }
     static HistoryManager getDefaultHistory() {
         return historyManager = new InMemoryHistoryManager();

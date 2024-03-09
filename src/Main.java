@@ -5,9 +5,11 @@ import tasks.Status;
 import tasks.Subtask;
 import tasks.Task;
 
+import java.io.IOException;
+
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         TaskManager taskManager = new InMemoryTaskManager();
         taskManager.addTask(new Task("задача 1", "описание задачи 1")); //1

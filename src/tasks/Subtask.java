@@ -1,20 +1,19 @@
 package tasks;
 
-import managers.TaskType;
-import tasks.Task;
-
 public class Subtask extends Task {
     private int epicId;
-    protected TaskType type = TaskType.SUBTASK;
+
     public Subtask(String name, String description, int epicId) {
         super(name, description);
         this.epicId = epicId;
+        this.type = TaskType.SUBTASK;
     }
     public Subtask(String name, String description, int id, Status status, int epicId) {
         super(name, description);
         this.id = id;
         this.status = status;
         this.epicId = epicId;
+        this.type = TaskType.SUBTASK;
     }
     public int getEpicId() {
         return epicId;

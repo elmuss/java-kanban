@@ -2,6 +2,8 @@ package managers;
 
 import tasks.*;
 import tasks.Status;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -171,7 +173,7 @@ public class InMemoryTaskManager implements TaskManager {
         return historyManager;
     }
 
-    public HashMap<Integer, Task> getTasks() {
+    protected HashMap<Integer, Task> getTasks() {
         return tasks;
     }
 
