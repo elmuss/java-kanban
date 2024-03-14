@@ -11,7 +11,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     public FileBackedTaskManager(File file) {
         this.file = file;
     }
-    public void save() throws ManagerSaveException {
+    public void save() {
         List<Task> tasksToSave = new ArrayList<>();
         tasksToSave.addAll((super.getTasks()).values());
 
@@ -41,16 +41,16 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
             String line = br.readLine();
 
             if (!line.startsWith("id") && !line.isBlank() && (line.contains("TASK") || line.contains("EPIC"))) {
+                Task loadedTask = CSVTaskFormatter.fromString(line);
 
-                if (line.contains("TASK") && !line.contains("SUBTASK")) {
-                    Task loadedTask = CSVTaskFormatter.fromString(line);
+                if (loadedTask.getType().equals(TaskType.TASK)) {
                     fileBackedTaskManager.getTasks().put(loadedTask.getId(), loadedTask);
-                } else if (line.contains("SUBTASK")) {
-                    Subtask loadedSubtask = ((Subtask)CSVTaskFormatter.fromString(line));
-                    fileBackedTaskManager.getSubtasks().put(loadedSubtask.getId(), loadedSubtask);
-                } else if (line.contains("EPIC")) {
-                    Epic loadedEpic = (Epic) CSVTaskFormatter.fromString(line);
-                    fileBackedTaskManager.getEpics().put(loadedEpic.getId(), loadedEpic);
+
+                } else if (loadedTask.getType().equals(TaskType.SUBTASK)) {
+                    fileBackedTaskManager.getSubtasks().put(loadedTask.getId(), (Subtask) loadedTask);
+
+                } else if (loadedTask.getType().equals(TaskType.EPIC)) {
+                    fileBackedTaskManager.getEpics().put(loadedTask.getId(), (Epic) loadedTask);
                 }
 
             } else if (!line.contains("TASK") && !line.contains("EPIC") && !line.startsWith("id") && !line.isBlank()) {

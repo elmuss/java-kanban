@@ -46,6 +46,7 @@ public class CSVTaskFormatter {
         String taskDescription = "";
         TaskType type = TaskType.TASK;
         int epicId = 0;
+        Task taskFromString;
 
         if (!value.startsWith("id") && !value.isEmpty()) {
             String[] taskFieldsFromString = value.split(",");
@@ -60,35 +61,23 @@ public class CSVTaskFormatter {
                 epicId = Integer.parseInt(taskFieldsFromString[5]);
             }
         }
-        Task taskFromString = new Task(taskName, taskDescription, taskId, taskStatus);
 
         if (type.equals(TaskType.SUBTASK)) {
             taskFromString = new Subtask(taskName, taskDescription, taskId, taskStatus, epicId);
         } else if (type.equals(TaskType.EPIC)) {
             taskFromString = new Epic(taskName, taskDescription, taskId, taskStatus);
+        } else {
+            taskFromString = new Task(taskName, taskDescription, taskId, taskStatus);
         }
 
         return taskFromString;
     }
     static Status setStatus(String status) {
-        Status settedStatus = Status.NEW;
-        if (status.equals("NEW")) {
-            settedStatus = Status.NEW;
-        } else if (status.equals("IN PROGRESS")) {
-            settedStatus = Status.IN_PROGRESS;
-        } else if (status.equals("DONE")) {
-            settedStatus = Status.DONE;
-        }
-        return settedStatus;
+        return Status.valueOf(status);
     }
     static TaskType setType(String type) {
-        TaskType settedType = TaskType.TASK;
-        if (type.equals("EPIC")) {
-            settedType = TaskType.EPIC;
-        } else if (type.equals("SUBTASK")) {
-            settedType = TaskType.SUBTASK;
-        }
-        return settedType;
+        return TaskType.valueOf(type);
+
     }
     static List<Integer> historyFromString(String value) {
         List<Integer> historyList = new ArrayList<>();

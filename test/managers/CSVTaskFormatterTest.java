@@ -29,8 +29,11 @@ class CSVTaskFormatterTest {
         history.add(epic);
         history.add(subtask);
 
-        System.out.println(CSVTaskFormatter.taskToString(taskList, subtaskList, epicList));
         Assertions.assertTrue(CSVTaskFormatter.historyToString(history).equals("1,2,3"));
+        Assertions.assertTrue(CSVTaskFormatter.taskToString(taskList, subtaskList, epicList)
+                .contains("1,TASK,задача 1,NEW,описание задачи 1"));
+        Assertions.assertTrue(CSVTaskFormatter.taskToString(taskList, subtaskList, epicList)
+                .contains("2,EPIC,эпик 1,NEW,описание эпика 1"));
     }
     @Test
     void taskFromString() {
