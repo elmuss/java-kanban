@@ -8,6 +8,7 @@ import tasks.Status;
 import tasks.Subtask;
 import tasks.Task;
 
+import java.io.IOException;
 import java.util.List;
 
 class InMemoryTaskManagerTest {
@@ -31,7 +32,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void epicCanNotBeItsSubtask() {
+    void epicCanNotBeItsSubtask() throws IOException {
         InMemoryTaskManager taskManager = new InMemoryTaskManager();
         taskManager.addEpic(new Epic("эпик 1", "описание эпика 1"));
         taskManager.addSubtask(new Subtask("подзадача 3","описание подзадачи 3", 1));
@@ -40,7 +41,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void subtaskCanNotBeItsEpic() {
+    void subtaskCanNotBeItsEpic() throws IOException {
         InMemoryTaskManager taskManager = new InMemoryTaskManager();
         taskManager.addEpic(new Epic("эпик 1", "описание эпика 1"));
         taskManager.addSubtask(new Subtask("подзадача 3","описание подзадачи 3", 1));
@@ -57,7 +58,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void inMemoryTaskManagerAbleToAddObjectsWithDifferentTypes() {
+    void inMemoryTaskManagerAbleToAddObjectsWithDifferentTypes() throws IOException {
         InMemoryTaskManager taskManager = new InMemoryTaskManager();
         taskManager.addEpic(new Epic("эпик 1", "описание эпика 1"));
         taskManager.addTask(new Task("задача 1","описание задачи 1"));
@@ -70,7 +71,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void canNotChangeObjectInHistory() {
+    void canNotChangeObjectInHistory() throws IOException {
         InMemoryTaskManager taskManager = new InMemoryTaskManager();
         taskManager.addTask(new Task("задача 1", "описание задачи 1"));
         taskManager.getCertainTask(1);

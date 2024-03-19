@@ -1,13 +1,14 @@
 package managers;
 
-public class Managers {
-    InMemoryTaskManager manager;
-    static InMemoryHistoryManager historyManager;
+import java.io.File;
 
-    public InMemoryTaskManager getDefault() {
-        return manager = new InMemoryTaskManager();
+public class Managers {
+
+    static TaskManager getDefault() {
+        TaskManager fileBackedManager = new FileBackedTaskManager(new File("resources/task.csv"));
+        return fileBackedManager;
     }
     static HistoryManager getDefaultHistory() {
-        return historyManager = new InMemoryHistoryManager();
+        return new InMemoryHistoryManager();
     }
 }
