@@ -8,29 +8,28 @@ import java.util.List;
 
 public class FileBackedTaskManager extends InMemoryTaskManager {
     protected File file;
+
     public FileBackedTaskManager(File file) {
         this.file = file;
     }
+
     public void save() {
-        List<Task> tasksToSave = new ArrayList<>();
-        tasksToSave.addAll((super.getTasks()).values());
+        List<Task> tasksToSave = new ArrayList<>((super.getTasks()).values());
 
-        List<Subtask> subtasksToSave = new ArrayList<>();
-        tasksToSave.addAll((super.getSubtasks()).values());
+        List<Subtask> subtasksToSave = new ArrayList<>((super.getSubtasks()).values());
 
-        List<Epic> epicsToSave = new ArrayList<>();
-        tasksToSave.addAll((super.getEpics()).values());
+        List<Epic> epicsToSave = new ArrayList<>((super.getEpics()).values());
 
         try (Writer fileWriter = new FileWriter(file)) {
             fileWriter.write(CSVTaskFormatter.taskToString(tasksToSave, subtasksToSave, epicsToSave));
             fileWriter.write("\n");
             fileWriter.write(CSVTaskFormatter.historyToString(super.getHistory()));
 
-
         } catch (IOException exception) {
             throw new ManagerSaveException("Файл не сохранен");
         }
     }
+
     public static FileBackedTaskManager loadFromFile(File file) throws IOException {
         FileBackedTaskManager fileBackedTaskManager = new FileBackedTaskManager(file);
 
@@ -70,69 +69,87 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         br.close();
         return fileBackedTaskManager;
     }
+
     @Override
     public void addTask(Task task) {
         super.addTask(task);
         save();
     }
+
     @Override
     public void addSubtask(Subtask subtask) {
         super.addSubtask(subtask);
         save();
     }
+
     @Override
     public void changeEpicStatus(Epic epic) {
         super.changeEpicStatus(epic);
         save();
     }
+
     @Override
     public void addEpic(Epic epic) {
         super.addEpic(epic);
         save();
     }
+
     @Override
     public void clearTasks() {
         super.clearTasks();
         save();
     }
+
     @Override
     public void clearEpics() {
         super.clearEpics();
         save();
     }
+
     @Override
     public void clearSubtasks() {
         super.clearSubtasks();
         save();
     }
+
     @Override
     public void removeCertainTask(int id) {
         super.removeCertainTask(id);
         save();
     }
+
     @Override
     public void removeCertainEpic(int id) {
         super.removeCertainEpic(id);
         save();
     }
+
     @Override
     public void removeCertainSubtask(int id) {
         super.removeCertainSubtask(id);
         save();
     }
+
     @Override
     public void updateTask(Task task) {
         super.updateTask(task);
         save();
     }
+
     @Override
     public void updateEpic(Epic epic) {
         super.updateEpic(epic);
         save();
     }
+
     @Override
     public void updateSubtask(Subtask subtask) {
         super.updateSubtask(subtask);
         save();
+    }
+
+    @Override
+    public void addAllToPrioritizedTasks() {
+        super.addAllToPrioritizedTasks();
     }
 }
