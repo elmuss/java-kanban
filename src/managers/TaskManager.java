@@ -2,8 +2,9 @@ package managers;
 
 import tasks.*;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public interface TaskManager {
     void addTask(Task task);
@@ -43,5 +44,8 @@ public interface TaskManager {
     void updateEpic(Epic epic);
 
     void updateSubtask(Subtask subtask);
+
     List<Task> getHistory();
+
+    TreeSet<Task> getPrioritizedTasks();
 }

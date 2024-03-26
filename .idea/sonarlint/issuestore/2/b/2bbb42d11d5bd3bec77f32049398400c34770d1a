@@ -1,7 +1,5 @@
 
 
-java:S1319´"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(·¬èÿÿÿÿÿ8ºõÆêá1
+java:S1319Ú"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(·¬èÿÿÿÿÿ8°èÅàæ1
 
-java:S1319¸"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(¦ıçíùÿÿÿÿ8ºõÆêá1
-R
-java:S1128"0Remove this unused import 'java.io.IOException'.(ªº»Úıÿÿÿÿ8ÈÔ°¦â1
+java:S1319Ş"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(¦ıçíùÿÿÿÿ8°èÅàæ1

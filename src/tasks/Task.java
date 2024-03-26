@@ -1,13 +1,18 @@
 package tasks;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Task {
     protected String name;
     protected String description;
     protected int id;
-    public Status status;
+
+    protected Status status;
     protected TaskType type = TaskType.TASK;
+    protected Duration duration;
+    protected LocalDateTime startTime;
 
     public Task(String name, String description) {
         this.description = description;
@@ -15,11 +20,13 @@ public class Task {
         this.status = Status.NEW;
     }
 
-    public Task(String name, String description, int id, Status status) {
+    public Task(String name, String description, int id, Status status, LocalDateTime startTime, Duration duration) {
         this.name = name;
         this.description = description;
         this.id = id;
         this.status = status;
+        this.startTime = startTime;
+        this.duration = duration;
     }
 
     public String getName() {
@@ -76,10 +83,24 @@ public class Task {
                 ", description='" + getDescription() + '\'' +
                 ", id=" + getId() +
                 ", status=" + getStatus() +
+                ", start time=" + getStartTime() +
+                ", duration=" + getDuration() +
                 '}';
     }
 
     public TaskType getType() {
         return type;
+    }
+
+    public LocalDateTime getEndTime() {
+        return startTime.plus(duration);
+    }
+
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
+    public Duration getDuration() {
+        return duration;
     }
 }

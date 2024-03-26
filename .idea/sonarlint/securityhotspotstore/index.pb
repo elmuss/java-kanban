@@ -33,3 +33,12 @@ M
 -test/managers/InMemoryHistoryManagerTest.java,a\d\ad3b84ea6e6d0311662c7f31e76c21d4c23c039d
 G
 src/tasks/TaskType.java,8\c\8c9ff1780c2928ad8ed5709fcd2615c2752785e5
+P
+ src/managers/HistoryManager.java,2\c\2ce8921cf227c6461f7c968aaad5bca2ef2cbc8a
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+R
+"test/managers/TaskManagerTest.java,d\8\d8a326f252287bc9b82feb6f613bf527a72216d7
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
