@@ -74,6 +74,7 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public void clearTasks() {
         tasks.values().forEach(prioritizedTasks::remove);
+        tasks.values().forEach(getHistory()::remove);
         tasks.clear();
     }
 
@@ -251,4 +252,5 @@ public class InMemoryTaskManager implements TaskManager {
     public TreeSet<Task> getPrioritizedTasks() {
         return prioritizedTasks;
     }
+
 }
