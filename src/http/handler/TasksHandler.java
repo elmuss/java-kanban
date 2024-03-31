@@ -8,6 +8,7 @@ import managers.TaskManager;
 import tasks.Subtask;
 import tasks.Task;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
@@ -16,8 +17,8 @@ import java.util.regex.Pattern;
 import static http.HttpTaskServer.sendText;
 
 public class TasksHandler implements HttpHandler {
-    private final TaskManager manager;
-    private final Gson gson;
+    protected final TaskManager manager;
+    protected Gson gson;
 
     public TasksHandler(TaskManager taskManager) {
         this.manager = taskManager;
@@ -46,7 +47,8 @@ public class TasksHandler implements HttpHandler {
                             if (optionalTask.isEmpty()) {
                                 exchange.sendResponseHeaders(404, 0);
                             } else {
-                                String response = gson.toJson(manager.getCertainTask(id));
+                                Task taskToSend = optionalTask.get();
+                                String response = gson.toJson(taskToSend);
                                 sendText(exchange, response);
                             }
                             break;
@@ -115,7 +117,6 @@ public class TasksHandler implements HttpHandler {
                             exchange.sendResponseHeaders(406, 0);
                         }
 
-
                     } else {
                         exchange.sendResponseHeaders(405, 0);
                     }
@@ -127,13 +128,25 @@ public class TasksHandler implements HttpHandler {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            try {
+                exchange.sendResponseHeaders(400, 0);
+                sendText(exchange, "В запросе содержится ошибка. Проверьте параметры и повторите запрос.");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         } finally {
             exchange.close();
         }
     }
+    public static void sendText(HttpExchange exchange, String text) throws IOException {
+        byte[] response = text.getBytes(StandardCharsets.UTF_8);
+        exchange.getResponseHeaders().add("Content-Type", "application/json;charset=utf-8");
+        exchange.sendResponseHeaders(200, response.length);
+        exchange.getResponseBody().write(response);
 
-    private int parsePathId(String path) {
+    }
+
+    int parsePathId(String path) {
         try {
             return Integer.parseInt(path);
         } catch (NumberFormatException exception) {

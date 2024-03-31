@@ -5,8 +5,10 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import http.HttpTaskServer;
 import managers.TaskManager;
+import tasks.Epic;
 import tasks.Subtask;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
@@ -14,13 +16,10 @@ import java.util.regex.Pattern;
 
 import static http.HttpTaskServer.sendText;
 
-public class SubtasksHandler implements HttpHandler {
-    private final TaskManager manager;
-    private final Gson gson;
+public class SubtasksHandler extends TasksHandler  {
 
-    public SubtasksHandler(TaskManager taskManager) {
-        this.manager = taskManager;
-        this.gson = HttpTaskServer.getGson();
+    public SubtasksHandler(TaskManager manager) {
+        super(manager);
     }
 
     @Override
@@ -45,7 +44,8 @@ public class SubtasksHandler implements HttpHandler {
                             if (optionalSubtask.isEmpty()) {
                                 exchange.sendResponseHeaders(404, 0);
                             } else {
-                                String response = gson.toJson(manager.getCertainSubtask(id));
+                                Subtask subtaskToSend = optionalSubtask.get();
+                                String response = gson.toJson(subtaskToSend);
                                 sendText(exchange, response);
                             }
                             break;
@@ -92,7 +92,7 @@ public class SubtasksHandler implements HttpHandler {
 
                     if (Pattern.matches("^/subtasks/\\d+$", path)) {
                         String pathId = path.replaceFirst("/subtasks/", "");
-                        int id = parsePathId(pathId);
+                        int id = super.parsePathId(pathId);
                         if (id != -1) {
                             Optional<Subtask> optionalSubtask = Optional.ofNullable(manager.getCertainSubtask(id));
                             if (optionalSubtask.isEmpty()) {
@@ -125,17 +125,14 @@ public class SubtasksHandler implements HttpHandler {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            try {
+                exchange.sendResponseHeaders(400, 0);
+                sendText(exchange, "В запросе содержится ошибка. Проверьте параметры и повторите запрос.");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         } finally {
             exchange.close();
-        }
-    }
-
-    private int parsePathId(String path) {
-        try {
-            return Integer.parseInt(path);
-        } catch (NumberFormatException exception) {
-            return -1;
         }
     }
 }

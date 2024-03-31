@@ -8,6 +8,7 @@ import managers.TaskManager;
 import tasks.Epic;
 import tasks.Task;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
@@ -15,13 +16,10 @@ import java.util.regex.Pattern;
 
 import static http.HttpTaskServer.sendText;
 
-public class EpicsHandler implements HttpHandler {
-    private final TaskManager manager;
-    private final Gson gson;
+public class EpicsHandler extends TasksHandler {
 
-    public EpicsHandler(TaskManager taskManager) {
-        this.manager = taskManager;
-        this.gson = HttpTaskServer.getGson();
+    public EpicsHandler(TaskManager manager) {
+       super(manager);
     }
 
     @Override
@@ -48,7 +46,8 @@ public class EpicsHandler implements HttpHandler {
                                 if (optionalEpic.isEmpty()) {
                                     exchange.sendResponseHeaders(404, 0);
                                 } else {
-                                    String response = gson.toJson(manager.getCertainEpic(id));
+                                    Epic epicToSend = optionalEpic.get();
+                                    String response = gson.toJson(epicToSend);
                                     sendText(exchange, response);
                                 }
                                 break;
@@ -56,7 +55,8 @@ public class EpicsHandler implements HttpHandler {
                                 if (optionalEpic.isEmpty()) {
                                     exchange.sendResponseHeaders(404, 0);
                                 } else {
-                                    String response = gson.toJson(manager.getCertainEpic(id).getSubtasksOfEpic());
+                                    Epic epicToSend = optionalEpic.get();
+                                    String response = gson.toJson(epicToSend.getSubtasksOfEpic());
                                     sendText(exchange, response);
                                 }
                             }
@@ -133,17 +133,14 @@ public class EpicsHandler implements HttpHandler {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            try {
+                exchange.sendResponseHeaders(400, 0);
+                sendText(exchange, "В запросе содержится ошибка. Проверьте параметры и повторите запрос.");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         } finally {
             exchange.close();
-        }
-    }
-
-    private int parsePathId(String path) {
-        try {
-            return Integer.parseInt(path);
-        } catch (NumberFormatException exception) {
-            return -1;
         }
     }
 }

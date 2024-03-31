@@ -237,4 +237,83 @@ class HttpTaskServerTest {
         assertEquals(200, response.statusCode());
         assertTrue(manager.getListEpic().isEmpty());
     }
+    @Test
+    void getTaskById() throws InterruptedException, IOException {
+
+        Task task = new Task("задача 1", "описание задачи 1", 1, Status.NEW,
+                LocalDateTime.of(2024, 6, 13, 13, 0), Duration.ofMinutes(30));
+        Task task1 = new Task("задача 2", "описание задачи 2", 2, Status.NEW,
+                LocalDateTime.of(2024, 7, 13, 13, 0), Duration.ofMinutes(30));
+        manager.addTask(task);
+        manager.addTask(task1);
+
+        HttpResponse<String> response;
+
+        HttpClient client = HttpClient.newHttpClient();
+        URI url = URI.create("http://localhost:8080/tasks/" + task1.getId());
+        HttpRequest request = HttpRequest.newBuilder().uri(url).GET().build();
+        response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+
+
+        assertEquals(200, response.statusCode());
+
+        final Task taskFromManager = gson.fromJson(response.body(), new TypeToken<Task>() {
+        }.getType());
+        System.out.println(response.body());
+
+        assertEquals(task1.getId(), taskFromManager.getId(), "Некорректный id задачи");
+    }
+
+    @Test
+    void getSubtaskById() throws InterruptedException, IOException {
+
+        Epic newEpic = new Epic("эпик 1", "описание эпика 1", 1, Status.NEW);
+        Subtask newSubtask = new Subtask("подзадача 1", "описание подзадачи 1", 2,
+                Status.NEW, 1, LocalDateTime.of(2024, 9, 23, 13, 0), Duration.ofMinutes(20));
+        Subtask newSubtask1 = new Subtask("подзадача 2", "описание подзадачи 1", 3,
+                Status.NEW, 1, LocalDateTime.of(2024, 9, 24, 13, 0), Duration.ofMinutes(20));
+        manager.addEpic(newEpic);
+        manager.addSubtask(newSubtask);
+        manager.addSubtask(newSubtask1);
+
+        HttpResponse<String> response;
+
+        HttpClient client = HttpClient.newHttpClient();
+        URI url = URI.create("http://localhost:8080/subtasks/" + newSubtask.getId());
+        HttpRequest request = HttpRequest.newBuilder().uri(url).GET().build();
+        response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        assertEquals(200, response.statusCode());
+
+        final Subtask subtaskFromManager = gson.fromJson(response.body(), new TypeToken<Subtask>() {}.getType());
+
+        assertEquals(newSubtask.getId(), subtaskFromManager.getId(), "Некорректный id задачи");
+    }
+
+    @Test
+    void getEpicById() throws InterruptedException, IOException {
+
+        Epic newEpic = new Epic("эпик 1", "описание эпика 1", 1, Status.NEW);
+        Subtask newSubtask = new Subtask("подзадача 1", "описание подзадачи 1", 2,
+                Status.NEW, 1, LocalDateTime.of(2024, 9, 23, 13, 0), Duration.ofMinutes(20));
+        Subtask newSubtask1 = new Subtask("подзадача 2", "описание подзадачи 1", 2,
+                Status.NEW, 1, LocalDateTime.of(2024, 9, 24, 13, 0), Duration.ofMinutes(20));
+        manager.addEpic(newEpic);
+        manager.addTask(newSubtask);
+        manager.addTask(newSubtask1);
+
+        HttpResponse<String> response;
+
+        HttpClient client = HttpClient.newHttpClient();
+        URI url = URI.create("http://localhost:8080/epics/" + newEpic.getId());
+        HttpRequest request = HttpRequest.newBuilder().uri(url).GET().build();
+        response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        assertEquals(200, response.statusCode());
+
+        final Epic epicFromManager = gson.fromJson(response.body(), new TypeToken<Epic>() {}.getType());
+
+        assertEquals(newEpic.getId(), epicFromManager.getId(), "Некорректный id эпика");
+    }
 }
