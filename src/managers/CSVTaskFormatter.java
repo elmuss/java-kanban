@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CSVTaskFormatter {
-    private final static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd|HH:mm");
+    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd|HH:mm");
 
     public static String taskToString(List<Task> tasksToSave, List<Subtask> subtasksToSave, List<Epic> epicsToSave) {
         StringBuilder sb = new StringBuilder("id,type,name,status,description,startTime,duration,epic\n");
