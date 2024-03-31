@@ -1,12 +1,8 @@
 package http.handler;
 
-import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
-import http.HttpTaskServer;
 import managers.TaskManager;
 import tasks.Epic;
-import tasks.Task;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,12 +10,10 @@ import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
-import static http.HttpTaskServer.sendText;
-
 public class EpicsHandler extends TasksHandler {
 
     public EpicsHandler(TaskManager manager) {
-       super(manager);
+        super(manager);
     }
 
     @Override

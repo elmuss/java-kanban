@@ -237,6 +237,7 @@ class HttpTaskServerTest {
         assertEquals(200, response.statusCode());
         assertTrue(manager.getListEpic().isEmpty());
     }
+
     @Test
     void getTaskById() throws InterruptedException, IOException {
 
@@ -253,7 +254,6 @@ class HttpTaskServerTest {
         URI url = URI.create("http://localhost:8080/tasks/" + task1.getId());
         HttpRequest request = HttpRequest.newBuilder().uri(url).GET().build();
         response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
 
 
         assertEquals(200, response.statusCode());
@@ -286,7 +286,8 @@ class HttpTaskServerTest {
 
         assertEquals(200, response.statusCode());
 
-        final Subtask subtaskFromManager = gson.fromJson(response.body(), new TypeToken<Subtask>() {}.getType());
+        final Subtask subtaskFromManager = gson.fromJson(response.body(), new TypeToken<Subtask>() {
+        }.getType());
 
         assertEquals(newSubtask.getId(), subtaskFromManager.getId(), "Некорректный id задачи");
     }
@@ -312,7 +313,8 @@ class HttpTaskServerTest {
 
         assertEquals(200, response.statusCode());
 
-        final Epic epicFromManager = gson.fromJson(response.body(), new TypeToken<Epic>() {}.getType());
+        final Epic epicFromManager = gson.fromJson(response.body(), new TypeToken<Epic>() {
+        }.getType());
 
         assertEquals(newEpic.getId(), epicFromManager.getId(), "Некорректный id эпика");
     }

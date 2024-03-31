@@ -1,11 +1,7 @@
 package http.handler;
 
-import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
-import http.HttpTaskServer;
 import managers.TaskManager;
-import tasks.Epic;
 import tasks.Subtask;
 
 import java.io.IOException;
@@ -14,9 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
-import static http.HttpTaskServer.sendText;
-
-public class SubtasksHandler extends TasksHandler  {
+public class SubtasksHandler extends TasksHandler {
 
     public SubtasksHandler(TaskManager manager) {
         super(manager);
