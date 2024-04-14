@@ -1,10 +1,8 @@
 package tasks;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Epic extends Task {
     private ArrayList<Subtask> subtasksOfEpic;
@@ -51,5 +49,20 @@ public class Epic extends Task {
             }
         }
         return endTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Epic{" +
+                "name='" + getName() + '\'' +
+                ", description='" + getDescription() + '\'' +
+                ", id=" + getId() +
+                ", status=" + getStatus() +
+                ", type=" + getType() +
+                ", listOfSubtasks=" + getSubtasksOfEpic() +
+                ", startTime=" + getStartTime() +
+                ", duration=" + getDuration() +
+                ", endTime=" + getEndTime() +
+                '}';
     }
 }

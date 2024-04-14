@@ -4,7 +4,7 @@ import java.io.File;
 
 public class Managers {
 
-    static TaskManager getDefault() {
+    public static TaskManager getDefault() {
         TaskManager fileBackedManager = new FileBackedTaskManager(new File("resources/task.csv"));
         return fileBackedManager;
     }

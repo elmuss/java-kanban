@@ -78,11 +78,12 @@ public class Task {
 
     @Override
     public String toString() {
-        return "tasks.Task{" +
+        return "Task{" +
                 "name='" + getName() + '\'' +
                 ", description='" + getDescription() + '\'' +
                 ", id=" + getId() +
                 ", status=" + getStatus() +
+                ", type=" + getType() +
                 ", start time=" + getStartTime() +
                 ", duration=" + getDuration() +
                 '}';
